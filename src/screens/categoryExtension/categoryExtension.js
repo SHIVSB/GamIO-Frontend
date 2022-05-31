@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-function Gamecard() {
+function CategoryExtension() {
   const [games, setgames] = useState([]);
   const [gameid, setgid] = useState("");
   const [duplicategames, setduplicategames] = useState("");
@@ -12,23 +12,6 @@ function Gamecard() {
   let headers = new Headers();
   headers.append("authorization", localStorage.getItem("token"));
   // const header = headers.get("authorization");
-
-  useEffect(async () => {
-    try {
-      // console.log(header);
-      axios.defaults.headers = {
-        authorization: localStorage.getItem("token"),
-      };
-      const data = (
-        await axios.get("http://localhost:4000/api/v1/all/allgames")
-      ).data.result;
-
-      setduplicategames(data);
-      setgames(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
   function filterbysearch() {
     const tempgames = duplicategames.filter((game) =>
@@ -44,13 +27,92 @@ function Gamecard() {
     });
   };
 
+  const filteredGames = async () => {
+    try {
+      axios.defaults.headers = {
+        authorization: localStorage.getItem("token"),
+      };
+
+      const data = (
+        await axios.get(
+          "http://localhost:4000/api/v1/filter/games/" +
+            localStorage.getItem("genre")
+        )
+      ).data.result;
+
+      setduplicategames(data);
+      setgames(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
+      <div className="float float-left">
+        <a href="/dashboard">
+          <button className="fixed bg-gray-900 text-white py-4 px-2 ml-2 rounded-md">Dashboard</button>
+        </a>
+      </div>
+      <div className="justify-center flex flex-row my-2">
+        <button
+          className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
+          onClick={() => {
+            localStorage.removeItem("genre");
+            localStorage.setItem("genre", "Action");
+            filteredGames();
+          }}
+        >
+          Action
+        </button>
+
+        <button
+          className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
+          onClick={() => {
+            localStorage.removeItem("genre");
+            localStorage.setItem("genre", "Crime");
+            filteredGames();
+          }}
+        >
+          Crime
+        </button>
+        <button
+          className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
+          onClick={() => {
+            localStorage.removeItem("genre");
+            localStorage.setItem("genre", "Arcade");
+            filteredGames();
+          }}
+        >
+          Arcade
+        </button>
+        <button
+          className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
+          onClick={() => {
+            localStorage.removeItem("genre");
+            localStorage.setItem("genre", "Racing");
+            filteredGames();
+          }}
+        >
+          Racing
+        </button>
+        <button
+          className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
+          onClick={() => {
+            localStorage.removeItem("genre");
+            localStorage.setItem("genre", "Adventure");
+            filteredGames();
+          }}
+        >
+          Adventure
+        </button>
+      </div>
+      <div></div>
       <div className="flex justify-center pt-12">
-        <div className=" mb-3 xl:w-96 fixed z-30 ">
+        <div className="mb-3 xl:w-96">
           <input
             type="search"
-            className="
+            class="
         form-control
         block
         w-full
@@ -60,7 +122,7 @@ function Gamecard() {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
-        border-2 border-solid border-gray-600
+        border border-solid border-gray-300
         rounded
         transition
         ease-in-out
@@ -80,7 +142,7 @@ function Gamecard() {
       </div>
       {games.map((game) => {
         return (
-          <div className="antialiased">
+          <div className="antialiased ">
             <div className="mx-auto px-4 w-1/2 py-14">
               <div className="relative shadow-lg flex-col bg-white rounded-lg">
                 <div className="flex-no-shrink">
@@ -131,4 +193,4 @@ function Gamecard() {
   );
 }
 
-export default Gamecard;
+export default CategoryExtension;

@@ -9,6 +9,14 @@ import Signup from "./components/signup/signup";
 import Detail from "./components/gamedetail/gamedetail";
 import Profile from "./components/profile/profile";
 import Players from "./components/players/players";
+import Allplayers from "./components/players/allplayers";
+import Namecard from "./screens/namecard/namecard";
+import ChangeEmail from "./screens/changeEmail/changeEmail";
+import Chat from "./components/socket/chat/chat";
+import OriginalNavbar from "./components/navbar/originalNavabr";
+import Posts from "./components/posts/posts";
+import CategoryExtension from "./screens/categoryExtension/categoryExtension";
+import Videocall from "./components/Webrtc/Videocall";
 
 function App() {
   return (
@@ -83,6 +91,80 @@ function App() {
           element={
             <Suspense fallback={<div></div>}>
               <Players />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/allplayers"
+          element={
+            <Suspense fallback={<div></div>}>
+              <Allplayers />
+            </Suspense>
+          }
+        />
+
+        <Route
+          exact
+          path="/changename"
+          element={
+            <Suspense fallback={<div></div>}>
+              <Namecard />
+            </Suspense>
+          }
+        />
+
+        <Route
+          exact
+          path="/changemail"
+          element={
+            <Suspense fallback={<div></div>}>
+              <ChangeEmail />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/chat/:name/:room"
+          element={
+            <Suspense fallback={<div></div>}>
+              <Chat />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/originalnavbar"
+          element={
+            <Suspense fallback={<div></div>}>
+              <OriginalNavbar />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/posts"
+          element={
+            <Suspense fallback={<div></div>}>
+              <Posts />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/categories"
+          element={
+            <Suspense fallback={<div></div>}>
+              <CategoryExtension />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/videocall"
+          element={
+            <Suspense fallback={<div></div>}>
+              <Videocall />
             </Suspense>
           }
         />

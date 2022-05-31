@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GamIO from "../../assets/images/GamIO.png";
 
 // const baseurl = "http://localhost:4000";
@@ -9,13 +9,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
-  const login = () => {
+  const login = async() => {
     const user = {
       email,
       password,
     };
-
 
     axios
       .post("http://localhost:4000/api/v1/signin", user)
@@ -36,10 +34,10 @@ function Login() {
   };
 
   return (
-    <div className={"text-center"}>
-      <div className="flex min-h-screen bg-yellow-300 p-4 bg-gray-100 lg:justify-center">
+    <div className={""}>
+      <div className="flex min-h-screen bg-gray-500 py-4 bg-gray-100 justify-center">
         <div className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
-          <div className="p-4 py-6 text-white bg-slate-900 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
+          <div className="p-4 py-6 text-center text-white bg-slate-900 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
             <div className="my-3 text-4xl font-bold tracking-wider text-center">
               <a href="/">
                 <img className={"h-16 w-24 rounded-lg"} src={GamIO} />
@@ -138,7 +136,6 @@ function Login() {
               </div>
               <div>
                 <button
-                  type="submit"
                   onClick={login}
                   className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-slate-900 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
                 >
