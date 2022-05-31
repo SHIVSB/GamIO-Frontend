@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Loader from "react-spinners/RingLoader";
 
 function Gamecard() {
   const [games, setgames] = useState([]);
@@ -8,6 +9,7 @@ function Gamecard() {
   const [duplicategames, setduplicategames] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [checkFollowing, setFollowing] = useState(false);
+  const [loading, setLoading] = useState();
 
   let headers = new Headers();
   headers.append("authorization", localStorage.getItem("token"));
@@ -16,6 +18,7 @@ function Gamecard() {
   useEffect(async () => {
     try {
       // console.log(header);
+      setLoading(true);
       axios.defaults.headers = {
         authorization: localStorage.getItem("token"),
       };
@@ -24,6 +27,7 @@ function Gamecard() {
       ).data.result;
 
       setduplicategames(data);
+      setLoading(false);
       setgames(data);
     } catch (error) {
       console.log(error);
@@ -52,10 +56,10 @@ function Gamecard() {
             type="search"
             className="
         form-control
-        block
         w-full
         px-3
         py-1.5
+        opacity-95
         text-base
         font-normal
         text-gray-700
@@ -78,55 +82,61 @@ function Gamecard() {
           />
         </div>
       </div>
-      {games.map((game) => {
-        return (
-          <div className="antialiased">
-            <div className="mx-auto px-4 w-1/2 py-14">
-              <div className="relative shadow-lg flex-col bg-white rounded-lg">
-                <div className="flex-no-shrink">
-                  <img
-                    alt=""
-                    className="w-64 px-2 py-2 h-64 block mx-auto"
-                    src={game.imagelink}
-                  />
-                </div>
-                <div className="flex-1 card-block relative">
-                  <div className="p-6">
-                    <h4 className="font-medium text-2xl mb-3">
-                      {game.gamename}
-                    </h4>
-                    <p className="leading-normal">
-                      Magni inventore repellat dignissimos eveniet dolore ex sit
-                      illo adipisci accusamus quos.
-                    </p>
-                    <div className="md:space-x-12 sm:space-y-4 space-x-2 space-y-2">
-                      <button className=" text-sm text-grey mt-6 bg-green-400  rounded-lg p-2">
-                        <a className="flex" href={"/detail/" + game._id}>
-                          About
-                        </a>
-                      </button>
+      {loading ? (
+        <h1 className="text-center my-60">
+          <Loader />
+        </h1>
+      ) : (
+        games.map((game) => {
+          return (
+            <div className="antialiased">
+              <div className="mx-auto px-4 w-1/2 py-14">
+                <div className="relative shadow-lg flex-col bg-white rounded-lg">
+                  <div className="flex-no-shrink">
+                    <img
+                      alt=""
+                      className="w-64 px-2 py-2 h-64 block mx-auto"
+                      src={game.imagelink}
+                    />
+                  </div>
+                  <div className="flex-1 card-block relative">
+                    <div className="p-6">
+                      <h4 className="font-medium text-2xl mb-3">
+                        {game.gamename}
+                      </h4>
+                      <p className="leading-normal">
+                        Magni inventore repellat dignissimos eveniet dolore ex
+                        sit illo adipisci accusamus quos.
+                      </p>
+                      <div className="md:space-x-12 sm:space-y-4 space-x-2 space-y-2">
+                        <button className=" text-sm text-grey mt-6 bg-green-400  rounded-lg p-2">
+                          <a className="flex" href={"/detail/" + game._id}>
+                            About
+                          </a>
+                        </button>
 
-                      <button
-                        className=" text-sm bg-blue-400 p-2 rounded-lg"
-                        onClick={() => {
-                          setgid(game._id);
-                          addToPlaying();
-                        }}
-                      >
-                        {checkFollowing ? (
-                          <span>Already Following</span>
-                        ) : (
-                          <span>Add to Following</span>
-                        )}
-                      </button>
+                        <button
+                          className=" text-sm bg-blue-400 p-2 rounded-lg"
+                          onClick={() => {
+                            setgid(game._id);
+                            addToPlaying();
+                          }}
+                        >
+                          {checkFollowing ? (
+                            <span>Already Following</span>
+                          ) : (
+                            <span>Add to Following</span>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 }
