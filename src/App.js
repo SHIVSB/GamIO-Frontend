@@ -17,6 +17,7 @@ import OriginalNavbar from "./components/navbar/originalNavabr";
 import Posts from "./components/posts/posts";
 import CategoryExtension from "./screens/categoryExtension/categoryExtension";
 import Videocall from "./components/Webrtc/Videocall";
+import ImageUploader from "./components/profile/Uploadphoto";
 
 function App() {
   return (
@@ -125,10 +126,10 @@ function App() {
         />
         <Route
           exact
-          path="/chat/:name/:room"
+          path="/chat"
           element={
             <Suspense fallback={<div></div>}>
-              <Chat />
+              <Chat/>
             </Suspense>
           }
         />
@@ -165,6 +166,15 @@ function App() {
           element={
             <Suspense fallback={<div></div>}>
               <Videocall />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/uploadphoto"
+          element={
+            <Suspense fallback={<div></div>}>
+              <ImageUploader />
             </Suspense>
           }
         />

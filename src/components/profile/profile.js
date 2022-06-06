@@ -11,7 +11,7 @@ function Profile() {
           "http://localhost:4000/api/v1/" + localStorage.getItem("userid")
         )
       ).data.result;
-      console.log(rep);
+      // console.log(rep);
       setuser(rep);
     } catch (error) {
       console.log(error);
@@ -54,23 +54,23 @@ function Profile() {
             </svg>
           </div>
         </section>
-        <section className="relative bg-gray-300">
-          <div className="container mx-auto">
+        <section className="relative bg-gray-300 ">
+          <div className="container mx-auto ">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-xl rounded-lg -mt-64">
-              <div className="px-6">
+              <div className="px-6 ">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-5/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative">
                       <img
                         alt="..."
                         src={user.profilePhoto}
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:ml-4"
                         style={{ maxWidth: "150px" }}
                       />
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                    <div className="flex flex-row py-6 px-3 mt-32 sm:mt-0">
+                    <div className="flex flex-row space-x-1 sm:space-x-2 py-6 px-3 mt-16 md:mt-16 lg:mt-0  sm:mt-20 justify-center">
                       <button
                         className="bg-green-500 active:bg-green-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                         type="button"
@@ -78,14 +78,23 @@ function Profile() {
                       >
                         Connect
                       </button>
+                      <a href="/uploadphoto">
+                        <button
+                          className="bg-green-500 active:bg-green-600 h-12 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                          type="button"
+                          style={{ transition: "all .15s ease" }}
+                        >
+                          Change Photo
+                        </button>
+                      </a>
                       <a href="/dashboard">
-                      <button
-                        className="bg-black active:bg-green-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        Dashboard
-                      </button>
+                        <button
+                          className="bg-black active:bg-green-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 h-12 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                          type="button"
+                          style={{ transition: "all .15s ease" }}
+                        >
+                          Dashboard
+                        </button>
                       </a>
                     </div>
                   </div>

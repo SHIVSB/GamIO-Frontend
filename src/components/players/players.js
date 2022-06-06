@@ -18,14 +18,12 @@ function Players() {
     ).data.result;
 
     setplayers([data]);
-    
   }, []);
 
   return (
     <div>
       {/* {console.log(players)} */}
 
-      
       {players.map((player) => {
         return (
           <div>
@@ -36,29 +34,29 @@ function Players() {
                     return (
                       <div>
                         {ifgame == gameid ? (
-                          <div class="mx-5 min-h-screen grid place-content-center">
-                            <div class="bg-gradient-to-r from-gray-600 to-gray-800 rounded-2xl text-white p-8 text-center h-72 max-w-sm mx-auto">
-                              <h1 class="text-3xl mb-3 uppercase">
+                          <div className="mx-5 min-h-screen grid place-content-center">
+                            <div className="bg-gradient-to-r from-gray-600 to-gray-800 rounded-2xl text-white p-8 text-center h-72 max-w-sm mx-auto">
+                              <h1 className="text-3xl mb-3 uppercase">
                                 {p.firstName}
                               </h1>
-                              <p class="text-lg">
+                              <p className="text-lg">
                                 You can contact us whenever you need help or
                                 just curious about something.
                               </p>
                             </div>
-                            <div class="bg-white py-8 px-10 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-xs mx-auto">
-                              <h2 class="font-semibold text-2xl mb-6">
+                            <div className="bg-white py-8 px-10 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-xs mx-auto">
+                              <h2 className="font-semibold text-2xl mb-6">
                                 Connect
                               </h2>
                               <img
-                                class="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
+                                className="w-20 h-20 object-cover rounded-full mx-auto shadow-lg"
                                 src={p.profilePhoto}
                                 alt="User avatar"
                               />
-                              <p class="capitalize text-xl mt-1">
+                              <p className="capitalize text-xl mt-1">
                                 {p.firstName}
                               </p>
-                              <span class="flex items-center text-center border rounded-full w-24  justify-center mx-auto mt-2 mb-12">
+                              <span className="flex items-center text-center border rounded-full w-24  justify-center mx-auto mt-2 mb-12">
                                 {p.active ? (
                                   <div className="flex">
                                     <div className=" bg-green-400 rounded-full mt-2 w-2.5 h-2.5 block mr-2"></div>
@@ -72,13 +70,13 @@ function Players() {
                                 )}
                               </span>
 
-                              <button class="rounded-md bg-gradient-to-r from-gray-600 to-gray-800 text-xl text-white pt-3 pb-4 px-8 inline">
+                              <button className="rounded-md bg-gradient-to-r from-gray-600 to-gray-800 text-xl text-white pt-3 pb-4 px-8 inline">
                                 Send a message
                               </button>
                             </div>
                           </div>
                         ) : (
-                          console.log("Not Equal")
+                          console.log()
                         )}
                       </div>
                     );

@@ -8,53 +8,60 @@ import Messages from "../Messages/Messages";
 import { useParams } from "react-router-dom";
 // import TextContainer from '../TextContainer/TextContainer';
 
-let socket;
+var connectionOptions = {
+  "force new connection": true,
+  reconnectionAttempts: "Infinity",
+  timeout: 10000,
+  transports: ["websocket"],
+};
 
-export default function Chat({ location }) {
-  // const [name, setName] = useState('');
-  // const [room, setRoom] = useState();
+var socket = io.connect("http://localhost:4000", connectionOptions);
+
+const location = window.location.href;
+
+export default function Chat() {
+  const [name, setName] = useState("");
+  const [room, setRoom] = useState("");
+  const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState("");
 
   const ENDPOINT = "localhost:4000";
 
-  let { name, room } = useParams();
-
   useEffect(() => {
-    socket = io(ENDPOINT);
+    const { name, room } = queryString.parse(location.search);
 
-    console.log(name, room);
-    // setName(name);
-    // setRoom(room);
+    setName(name);
+    setRoom(room);
 
     socket.emit("join", { name, room }, (error) => {
       if (error) {
         alert(error);
       }
     });
-  }, [ENDPOINT, { name, room }]);
+    return () => {
+      socket.emit("disconnect");
+      socket.off();
+    };
+  }, [ENDPOINT, location.search]);
 
   useEffect(() => {
     socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
+      setMessages([...messages, message]);
     });
 
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
-  }, []);
+  }, [messages, users]);
 
-  const sendMessage = (event) => {
-    event.preventDefault();
-
+  //Function for Sending Message
+  const sendMessage = (e) => {
+    e.preventDefault();
     if (message) {
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
-
-  //    console.log(message, messages);
-
   return (
     <div className="outerContainer">
       <div className="container">

@@ -11,6 +11,7 @@ import logoutsym from "../../assets/images/logout.png";
 import user from "../../assets/images/user.png";
 import poscard from "../../assets/images/postcard.png";
 import CategoryExtension from "../../screens/categoryExtension/categoryExtension";
+import GamIO from "../../assets/images/GamIO.png"
 
 function Dashboard() {
   const user = localStorage.getItem("user");
@@ -70,7 +71,7 @@ function Dashboard() {
     <div>
       <div
         style={{}}
-        className="my-4 md:my-44 lg:my-44 grid md:grid-rows-6 fixed my:0"
+        className="my-28 md:my-36 lg:my-36 grid md:grid-rows-7 grid-col-7 fixed"
       >
         <a href="/">
           <img className="ml-4 h-16 w-16" src={home} />

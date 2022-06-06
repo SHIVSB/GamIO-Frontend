@@ -10,6 +10,10 @@ function Allplayers() {
   const [searchKey, setSearchKey] = useState("");
   const [loading, setLoading] = useState();
 
+  var sortAlphabets = function (text) {
+    return text.split("").sort().join("");
+  };
+
   function filterbysearch() {
     const tempplayers = duplicateplayers.filter((player) =>
       player.firstName.toLowerCase().includes(searchKey.toLocaleLowerCase())
@@ -122,9 +126,12 @@ function Allplayers() {
                     </a>
                   </div>
                   <Link
-                    to={`/chat/${localStorage.getItem("user")}/${
-                      player.firstName
-                    }`}
+                    to={`/chat?name=${localStorage.getItem(
+                      "user"
+                    )}&room=${sortAlphabets(
+                      player.firstName.toLowerCase() +
+                        localStorage.getItem("user").toLowerCase()
+                    )}`}
                   >
                     <button class="rounded-md bg-gradient-to-r from-gray-600 to-gray-800 text-xl text-white pt-3 pb-4 px-8 inline">
                       Send a message

@@ -49,12 +49,12 @@ function CategoryExtension() {
 
   return (
     <div>
-      <div className="float float-left">
+      <div className="justify-center grid lg:grid-cols-6 space-y-2 sm:grid-cols-2 md:grid-cols-3 my-2">
         <a href="/dashboard">
-          <button className="fixed bg-gray-900 text-white py-4 px-2 ml-2 rounded-md">Dashboard</button>
+          <button className="fixed py-4 px-6 bg-gray-900 text-white shadow-lg mx-2 rounded-sm">
+            Dashboard
+          </button>
         </a>
-      </div>
-      <div className="justify-center flex flex-row my-2">
         <button
           className="py-4 px-6 bg-gray-300 shadow-lg mx-2 rounded-sm"
           onClick={() => {
@@ -106,13 +106,14 @@ function CategoryExtension() {
         >
           Adventure
         </button>
+        
       </div>
       <div></div>
       <div className="flex justify-center pt-12">
         <div className="mb-3 xl:w-96">
           <input
             type="search"
-            class="
+            className="
         form-control
         block
         w-full
