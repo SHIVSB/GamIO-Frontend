@@ -51,7 +51,7 @@ export default function ImageUploader() {
               "http://localhost:4000/api/v1/profile/profilephotoupload",
               formData
             );
-            window.location.href("/profile")
+            window.location.href("/profile");
           }}
         >
           Upload Image

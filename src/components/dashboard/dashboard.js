@@ -77,7 +77,7 @@ function Dashboard() {
           <img className="ml-4 h-16 w-16" src={home} />
         </a>
         <a href="/posts">
-          <img className="ml-4 h-16 w-16" src={poscard} />
+          <img className="ml-4 h-16 w-16 " src={poscard} />
         </a>
         <a href="/allplayers">
           <img className="ml-4 h-16 w-16" src={avatar} />

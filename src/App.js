@@ -13,11 +13,12 @@ import Allplayers from "./components/players/allplayers";
 import Namecard from "./screens/namecard/namecard";
 import ChangeEmail from "./screens/changeEmail/changeEmail";
 import Chat from "./components/socket/chat/chat";
-import OriginalNavbar from "./components/navbar/originalNavabr";
+import OriginalNavbar from "./components/navbar/originalNavbar";
 import Posts from "./components/posts/posts";
 import CategoryExtension from "./screens/categoryExtension/categoryExtension";
 import Videocall from "./components/Webrtc/Videocall";
 import ImageUploader from "./components/profile/Uploadphoto";
+import NewPost from "./components/posts/newPost";
 
 function App() {
   return (
@@ -129,7 +130,7 @@ function App() {
           path="/chat"
           element={
             <Suspense fallback={<div></div>}>
-              <Chat/>
+              <Chat />
             </Suspense>
           }
         />
@@ -175,6 +176,15 @@ function App() {
           element={
             <Suspense fallback={<div></div>}>
               <ImageUploader />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/newpost"
+          element={
+            <Suspense fallback={<div></div>}>
+              <NewPost />
             </Suspense>
           }
         />
